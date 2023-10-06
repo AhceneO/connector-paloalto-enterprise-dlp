@@ -35,7 +35,7 @@
               "status": null,
               "arguments": {
                 "name": "Palo Alto Enterprise DLP",
-                "config": "''",
+                "config": "",
                 "params": {
                   "report_id": "",
                   "fetchSnippets": true
