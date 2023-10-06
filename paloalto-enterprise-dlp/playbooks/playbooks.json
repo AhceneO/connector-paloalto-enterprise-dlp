@@ -1,0 +1,89 @@
+{
+  "type": "workflow_collections",
+  "data": [
+    {
+      "uuid": "d10cbb3c-45a8-4730-8ba5-9c2e2016ad81",
+      "@type": "WorkflowCollection",
+      "workflows": [
+        {
+          "@type": "Workflow",
+          "uuid": "85908cda-4e1a-475a-adfe-b9d5c21f2e56",
+          "collection": "/api/3/workflow_collections/d10cbb3c-45a8-4730-8ba5-9c2e2016ad81",
+          "steps": [
+            {
+              "uuid": "9be304fc-4e96-4052-9d25-e5dbbbb20a0d",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "params": []
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "c4332c3a-d518-4c0e-82d9-046b1f3d9caf",
+              "@type": "WorkflowStep",
+              "name": "Get Report Details",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Palo Alto Enterprise DLP",
+                "config": "''",
+                "params": {
+                  "report_id": "",
+                  "fetchSnippets": true
+                },
+                "version": "1.0.0",
+                "connector": "paloalto-enterprise-dlp",
+                "operation": "get_report_details",
+                "operationTitle": "Get Report Details"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Retrieves the specific report information from Palo Alto Enterprise DLP based on the report ID you have specified.",
+          "name": "Get Report Details",
+          "tag": "#Palo Alto Enterprise DLP",
+          "recordTags": [
+            "Paloalto",
+            "paloalto-enterprise-dlp"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/9be304fc-4e96-4052-9d25-e5dbbbb20a0d",
+          "routes": [
+            {
+              "uuid": "25295fd1-35a5-4c1e-839a-5d4a76e38b62",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Report Details",
+              "sourceStep": "/api/3/workflow_steps/9be304fc-4e96-4052-9d25-e5dbbbb20a0d",
+              "targetStep": "/api/3/workflow_steps/c4332c3a-d518-4c0e-82d9-046b1f3d9caf"
+            }
+          ]
+        }
+      ],
+      "name": "Sample - Palo Alto Enterprise DLP - 1.0.0",
+      "description": "Palo Alto Enterprise DLP discovers and protects company data across every data channel and repository.",
+      "visible": true,
+      "recordTags": [
+        "Paloalto",
+        "paloalto-enterprise-dlp"
+      ]
+    }
+  ]
+}

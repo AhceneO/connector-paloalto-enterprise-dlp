@@ -1,0 +1,151 @@
+{
+  "name": "paloalto-enterprise-dlp",
+  "version": "1.0.0",
+  "label": "Palo Alto Enterprise DLP",
+  "category": "Network Security",
+  "description": "Palo Alto Enterprise DLP discovers and protects company data across every data channel and repository.",
+  "publisher": "Fortinet",
+  "cs_approved": false,
+  "cs_compatible": true,
+  "help_online": "",
+  "icon_small_name": "small.png",
+  "icon_large_name": "large.png",
+  "ingestion_supported": false,
+  "configuration": {
+    "fields": [
+      {
+        "title": "Server URL",
+        "type": "text",
+        "name": "server",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "description": "Specify the URL of the Palo Alto Enterprise DLP server to connect and perform automated operations.",
+        "value": "https://api.dlp.paloaltonetworks.com",
+        "tooltip": "Specify the URL of the Palo Alto Enterprise DLP server to connect and perform automated operations."
+      },
+      {
+        "title": "Client ID",
+        "tooltip": "Specify the client ID to access the Palo Alto Enterprise DLP server to connect and perform automated operations.",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "type": "text",
+        "name": "client_id",
+        "description": "Specify the client ID to access the Palo Alto Enterprise DLP server to connect and perform automated operations."
+      },
+      {
+        "title": "Client Secret",
+        "tooltip": "Specify the client secret to access the Palo Alto Enterprise DLP server to connect and perform automated operations.",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "type": "password",
+        "name": "client_secret",
+        "description": "Specify the client secret to access the Palo Alto Enterprise DLP server to connect and perform automated operations."
+      },
+      {
+        "title": "Verify SSL",
+        "name": "verify_ssl",
+        "description": "Specifies whether the SSL certificate for the server is to be verified. By default, this option is set to True.",
+        "type": "checkbox",
+        "required": false,
+        "editable": true,
+        "visible": true,
+        "value": true,
+        "tooltip": "Specifies whether the SSL certificate for the server is to be verified. By default, this option is set to True."
+      }
+    ]
+  },
+  "operations": [
+    {
+      "operation": "get_report_details",
+      "category": "investigation",
+      "annotation": "get_report_details",
+      "description": "Retrieves the specific report information from Palo Alto Enterprise DLP based on the report ID you have specified.",
+      "title": "Get Report Details",
+      "parameters": [
+        {
+          "title": "Report ID",
+          "description": "Specify the ID of the report based on which you want to retrieve details from Palo Alto Enterprise DLP.",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "report_id",
+          "tooltip": "Specify the ID of the account based on which you want to retrieve details from Palo Alto Enterprise DLP."
+        },
+        {
+          "title": "Fetch Snippets",
+          "description": "Select the option, if you want to retrieves snippets from the DLP report. By default, it set as True.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "checkbox",
+          "name": "fetchSnippets",
+          "tooltip": "Select the option, if you want to retrieves snippets from the DLP report. By default, it set as True.",
+          "value": true
+        }
+      ],
+      "output_schema": {
+        "txn_id": "",
+        "report_id": "",
+        "data_profile_id": "",
+        "data_profile_name": "",
+        "type": "",
+        "tenant_id": "",
+        "fileSha": "",
+        "file_name": "",
+        "file_type": "",
+        "file_size_in_bytes": "",
+        "extracted_file_size_in_bytes": "",
+        "detection_time": "",
+        "data_pattern_rule_1_verdict": "",
+        "data_pattern_rule_2_verdict": "",
+        "scanContentRawReport": {
+          "data_pattern_rule_1_results": [
+            {
+              "data_pattern_id": "",
+              "version": "",
+              "name": "",
+              "technique": "",
+              "type": "",
+              "strict_detection_frequency": "",
+              "proximity_detection_frequency": "",
+              "detection_frequency": "",
+              "unique_strict_detection_frequency": "",
+              "unique_checksum_detection_frequency": "",
+              "unique_proximity_detection_frequency": "",
+              "unique_detection_frequency": "",
+              "weighted_frequency": "",
+              "score": "",
+              "high_confidence_frequency": "",
+              "medium_confidence_frequency": "",
+              "low_confidence_frequency": "",
+              "unique_high_confidence_frequency": "",
+              "unique_medium_confidence_frequency": "",
+              "unique_low_confidence_frequency": "",
+              "state": ""
+            }
+          ],
+          "data_pattern_rule_2_results": []
+        },
+        "message": "",
+        "time": "",
+        "scan_request_received_time": "",
+        "file_download_start_time": "",
+        "file_download_finish_time": "",
+        "extraction_start_time": "",
+        "extraction_finish_time": "",
+        "get_profile_patterns_start_time": "",
+        "get_profile_patterns_finish_time": "",
+        "scanning_start_time": "",
+        "scanning_finish_time": "",
+        "generate_verdict_start_time": "",
+        "generate_verdict_finish_time": "",
+        "scan_request_finished_time": ""
+      },
+      "enabled": true
+    }
+  ]
+}
