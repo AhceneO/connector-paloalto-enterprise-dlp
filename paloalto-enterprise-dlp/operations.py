@@ -1,9 +1,3 @@
-""" Copyright start
-  Copyright (C) 2008 - 2023 Fortinet Inc.
-  All rights reserved.
-  FORTINET CONFIDENTIAL & FORTINET PROPRIETARY SOURCE CODE
-  Copyright end """
-
 from .paloalto_api_auth import *
 from connectors.core.connector import get_logger, ConnectorError
 import requests, json
