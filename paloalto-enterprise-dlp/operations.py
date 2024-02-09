@@ -1,3 +1,10 @@
+"""
+Copyright start
+MIT License
+Copyright (c) 2024 Fortinet Inc
+Copyright end
+"""
+
 from .paloalto_api_auth import *
 from connectors.core.connector import get_logger, ConnectorError
 import requests, json
