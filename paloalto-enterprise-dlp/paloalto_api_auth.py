@@ -1,3 +1,10 @@
+"""
+Copyright start
+MIT License
+Copyright (c) 2024 Fortinet Inc
+Copyright end
+"""
+
 import requests, json
 import base64
 from time import time, ctime
@@ -29,7 +36,7 @@ class PaloAlto:
 
     def generate_token(self, REFRESH_TOKEN_FLAG):
         try:
-            token_resp = acquire_token(self, REFRESH_TOKEN_FLAG)
+            token_resp = self.acquire_token(REFRESH_TOKEN_FLAG)
             ts_now = time()
             token_resp['expiresOn'] = (ts_now + token_resp['expires_in']) if token_resp.get("expires_in") else None
             token_resp['accessToken'] = token_resp.get("access_token")
@@ -65,11 +72,9 @@ class PaloAlto:
             logger.error("{0}".format(str(err)))
             raise ConnectorError("{0}".format(str(err)))
 
-
-def acquire_token(self, REFRESH_TOKEN_FLAG):
-    try:
-        error_msg = ''
-        if not REFRESH_TOKEN_FLAG:
+    def acquire_token(self, REFRESH_TOKEN_FLAG):
+        try:
+            error_msg = ''
             creds = f'{self.client_id}:{self.client_secret}'
             auth_header = 'Basic ' + base64.b64encode(creds.encode('utf-8')).decode('utf-8')
             headers = {
@@ -78,38 +83,28 @@ def acquire_token(self, REFRESH_TOKEN_FLAG):
             }
             data = "grant_type=client_credentials"
             endpoint = 'https://auth.apps.paloaltonetworks.com/auth/v1/oauth2/access_token'
-        else:
-            headers = {
-                'Authorization': 'Bearer {0}'.format(self.client_id),
-                'Content-Type': 'application/json'
-            }
-            data = {
-                "refresh_token": self.client_secret
-            }
-            endpoint = 'https://auth.apps.paloaltonetworks.com/v1/public/oauth/refreshToken'
-        logger.debug("Endpoint: {0}".format(endpoint))
-        logger.debug("Headers: {0}".format(headers))
-        response = requests.post(endpoint, data=data, headers=headers, verify=self.verify_ssl, timeout=600)
-        logger.debug("Response: {0}".format(response))
-        if response.status_code in [200, 204, 201]:
-            return response.json()
-        else:
-            if response.text != "":
-                err_resp = response.json()
-                if err_resp and 'error' in err_resp:
-                    failure_msg = err_resp.get('error_description')
-                    error_msg = 'Response {0}: {1} \n Error Message: {2}'.format(response.status_code,
-                                                                                 response.reason,
-                                                                                 failure_msg if failure_msg else '')
-                else:
-                    err_resp = response.text
+            logger.debug("Endpoint: {0}".format(endpoint))
+            logger.debug("Headers: {0}".format(headers))
+            response = requests.post(endpoint, data=data, headers=headers, verify=self.verify_ssl, timeout=600)
+            logger.debug("Response: {0}".format(response))
+            if response.status_code in [200, 204, 201]:
+                return response.json()
             else:
-                error_msg = '{0}:{1}'.format(response.status_code, response.reason)
-            raise ConnectorError(error_msg)
-
-    except Exception as err:
-        logger.error("{0}".format(str(err)))
-        raise ConnectorError("{0}".format(str(err)))
+                if response.text != "":
+                    err_resp = response.json()
+                    if err_resp and 'error' in err_resp:
+                        failure_msg = err_resp.get('error_description')
+                        error_msg = 'Response {0}: {1} \n Error Message: {2}'.format(response.status_code,
+                                                                                     response.reason,
+                                                                                     failure_msg if failure_msg else '')
+                    else:
+                        err_resp = response.text
+                else:
+                    error_msg = '{0}:{1}'.format(response.status_code, response.reason)
+                raise ConnectorError(error_msg)
+        except Exception as err:
+            logger.error("{0}".format(str(err)))
+            raise ConnectorError("{0}".format(str(err)))
 
 
 def check(config, connector_info):
