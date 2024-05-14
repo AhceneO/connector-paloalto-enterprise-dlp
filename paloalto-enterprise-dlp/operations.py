@@ -1,8 +1,5 @@
 """
-Copyright start
-MIT License
-Copyright (c) 2024 Fortinet Inc
-Copyright end
+This file will be auto-generated on each "new operation action", so avoid editing in this file.
 """
 
 from .paloalto_api_auth import *
@@ -56,6 +53,29 @@ def get_report_details(config, params, connector_info):
         logger.exception("{0}".format(str(err)))
         raise ConnectorError("{0}".format(str(err)))
 
+def get_incidents(config: dict, params: dict) -> dict:
+    try:
+        endpoint = ""  # edit endpoint
+        method = "GET"  # GET/POST/PUT/DELETE
+        # write your code here, if needed.
+        MK = MakeRestApiCall(config=config)
+        response = MK.make_request(endpoint=endpoint, method=method, params=params)
+        return response
+    except Exception as err:
+        logger.exception("{0}".format(str(err)))
+        raise ConnectorError("{0}".format(str(err)))
+
+def update_incident_resolution(config: dict, params: dict) -> dict:
+    try:
+        endpoint = ""  # edit endpoint
+        method = "PUT"  # GET/POST/PUT/DELETE
+        # write your code here, if needed.
+        MK = MakeRestApiCall(config=config)
+        response = MK.make_request(endpoint=endpoint, method=method, params=params)
+        return response
+    except Exception as err:
+        logger.exception("{0}".format(str(err)))
+        raise ConnectorError("{0}".format(str(err)))
 
 def _check_health(config, connector_info):
     try:
@@ -64,7 +84,8 @@ def _check_health(config, connector_info):
         logger.exception("{0}".format(str(err)))
         raise ConnectorError("{0}".format(str(err)))
 
-
 operations = {
-    'get_report_details': get_report_details
+    "get_report_details": get_report_details,
+    "update_incident_resolution": update_incident_resolution,
+    "get_incidents": get_incidents,
 }

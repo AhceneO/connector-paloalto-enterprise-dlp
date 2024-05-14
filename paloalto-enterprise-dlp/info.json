@@ -87,6 +87,7 @@
           "value": true
         }
       ],
+      "enabled": true,
       "output_schema": {
         "txn_id": "",
         "report_id": "",
@@ -144,8 +145,201 @@
         "generate_verdict_start_time": "",
         "generate_verdict_finish_time": "",
         "scan_request_finished_time": ""
+      }
+    },
+    {
+      "operation": "update_incident_resolution",
+      "title": "Update Incident Resolution",
+      "annotation": "update_incident_resolution",
+      "description": "Update the resolution status for a specific incident",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "output_schema": {},
+      "parameters": [
+        {
+          "name": "incident_id",
+          "title": "incident ID",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "tooltip": "ID of the Incident to be updated",
+          "description": "ID of the Incident to be updated"
+        },
+        {
+          "name": "region",
+          "title": "region",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "value": "us",
+          "tooltip": "The region/country of the recorded incident",
+          "description": "The region/country of the recorded incident"
+        }
+      ]
+    },
+    {
+      "operation": "get_incidents",
+      "title": "Get Incidents",
+      "annotation": "get_incidents",
+      "description": "Similarly to how you can view DLP Incidents on Panorama or Strata Cloud Manager, you can view your DLP incidents programatically. The API retrieves all DLP incidents which you can filter using the query paramaters.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "output_schema": {
+        "page": {
+          "number": "",
+          "size": "",
+          "total_elements": "",
+          "total_pages": ""
+        },
+        "resources": [
+          {
+            "action": "",
+            "app_id": "",
+            "app_name": "",
+            "channel": "",
+            "data_profile_id": "",
+            "data_profile_name": "",
+            "file_name": "",
+            "file_sha": "",
+            "file_type": "",
+            "incident_creation_time": "",
+            "incident_id": "",
+            "report_id": "",
+            "source": "",
+            "tenant_id": "",
+            "user": ""
+          }
+        ]
       },
-      "enabled": true
+      "parameters": [
+        {
+          "name": "start_time",
+          "title": "Start Time",
+          "type": "datetime",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "The start time to sort the incidents by.",
+          "description": "The start time to sort the incidents by."
+        },
+        {
+          "name": "end_time",
+          "title": "End Time",
+          "type": "datetime",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "The end time of the incident",
+          "description": "The end time of the incident"
+        },
+        {
+          "name": "channel",
+          "title": "Channel",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Source of the DLP incident you are viewing",
+          "description": "Source of the DLP incident you are viewing\nPossible values: [ngfw, prisma-access]\n",
+          "options": [
+            "\"ngfw\"",
+            "\"prisma-access\""
+          ]
+        },
+        {
+          "name": "user_ids",
+          "title": "User IDs",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "User IDs assosciated with the incident.",
+          "description": "User IDs assosciated with the incident."
+        },
+        {
+          "name": "file_shas",
+          "title": "File SHAs",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "The file SHA assosciated with the incident",
+          "description": "The file SHA assosciated with the incident\n"
+        },
+        {
+          "name": "report_ids",
+          "title": "Report IDs",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "ID of the retrieved report",
+          "description": "ID of the retrieved report"
+        },
+        {
+          "name": "region",
+          "title": "Region",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Region the incident was triggered in",
+          "description": "Region the incident was triggered in"
+        },
+        {
+          "name": "page_number",
+          "title": "Page_number",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Pagination support to track the number incidents you retrieved",
+          "description": "Pagination support to track the number incidents you retrieved"
+        },
+        {
+          "name": "page_size",
+          "title": "Page Size",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Pagination support to reduce the number incidents you retrieved",
+          "description": "Pagination support to reduce the number incidents you retrieved"
+        },
+        {
+          "name": "sort_by",
+          "title": "Sort By",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "value": "creation time",
+          "tooltip": "Field used to sort incidents. ",
+          "description": "Field used to sort incidents. \nThe default sort order is by creation time.",
+          "options": [
+            "\"creation time\"",
+            "\"Incident ID\"",
+            "\"User ID\""
+          ]
+        },
+        {
+          "name": "ascending",
+          "title": "Ascending",
+          "type": "checkbox",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Check to sort incidents in ascending order.",
+          "description": "Sort incidents in ascending order ?",
+          "value": false
+        }
+      ]
     }
   ]
 }
